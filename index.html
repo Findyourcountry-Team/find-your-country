@@ -16,18 +16,31 @@
 
     <!-- Header -->
     <header class="header">
-        <h1>🌐 Find Your Country 🌍</h1>
-        <p>Explore countries around the world and test your geography knowledge.</p>
+      <div class="icon"><h1>🌐</h1></div>
+      <h1>Find Your Country 🌍</h1>
+      <p>Explore countries around the world and test your geograph knowledge</p>
+        
     </header>
 
     <!-- Search -->
     <div class="input-container">
-        <i class="fa-solid fa-magnifying-glass"></i>
-        <input
-            type="text"
-            class="search-input"
-            placeholder="Search for a country...">
-    </div>
+
+      <i class="fa-solid fa-magnifying-glass" style="color: #545868"></i>
+      <input type="text" id="search-input" class="search-input" />
+    </div> 
+
+    <main id="country-form" class="card hidden">
+      <img id="flag" src="" alt="country flag">
+      <h2 id="country-name" ></h2>
+      <div id="info">
+        <p><strong>🏠 Capital:</strong> <span id="capital">-</span></p>
+        <p><strong>👥 Population:</strong> <span id="population">-</span></p>
+        <p><strong>🗣️ Language:</strong> <span id="language">-</span></p>
+        <p><strong>🪙 Currencies:</strong> <span id="Currencies">-</span></p>
+
+      </div>
+    </main>
+
 
     <!-- Guess Game -->
     <section class="game-container">
