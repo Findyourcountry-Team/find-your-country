@@ -77,4 +77,5 @@ async function getCountry(country) {
     console.log(error);
   }
 }
+getCountry('kenya')
  
