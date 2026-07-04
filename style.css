@@ -1,4 +1,13 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body */
 body {
+
   background-color: #e2e8f0;
   font-family:
     "inter",
@@ -27,8 +36,11 @@ body {
   outline: none;
   box-sizing: border-box;
   color: #4a5568;
+
 }
+
 .input-container i {
+
   position: absolute;
   left: 15px;
   top: 50%;
@@ -71,4 +83,37 @@ body {
   .card {
     padding: 15px;
   }
+
+}
+
+#submitBtn:hover {
+    background-color: #2563eb;
+}
+
+#hintBtn {
+    flex: 1;
+    background-color: #3b82f6;
+    color: white;
+}
+
+#hintBtn:hover {
+    background-color: #2563eb;
+}
+
+#nextBtn {
+    width: 100%;
+    background-color: #f2f2f2;
+    color: #333;
+}
+
+#nextBtn:hover {
+    background-color: #dddddd;
+}
+
+/* Result */
+#result {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
 }
