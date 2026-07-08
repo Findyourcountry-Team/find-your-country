@@ -14,7 +14,8 @@ let currentCountry = null;
 // 🌍 Fetch countries from REST Countries API
 async function fetchCountries() {
     try {
-        const res = await fetch(API_URL);
+        const res = await fetch(` https://api.restcountries.com/countries/v5/names.common/`
+        );
         const data = await res.json();
 
         if (data.success === false || data.errors) {
@@ -131,7 +132,7 @@ fetchCountries();
 const searchInput = document.querySelector(".search-input");
 const countryForm = document.getElementById("country-form");
 
-const flagImg = document.getElementById("flag");
+
 const countryName = document.getElementById("country-name");
 const caPital = document.getElementById("capital");
 const poPulation = document.getElementById("population");
@@ -165,7 +166,7 @@ async function getCountry(country) {
     const data = await response.json();
     console.log(data.data.objects);
     if (data.data.objects && data.data.objects.length > 0) {
-      console.log('hello')
+     
       const countryData = data.data.objects[0];
       console.log(countryData)
     
@@ -187,7 +188,7 @@ async function getCountry(country) {
         : "0";
 
       if (countryData.languages) {
-        console.log('hello')
+      
         langUages.textContent = Object.values(countryData.languages[0].name).join("");
       } else {
         langUages.textContent = "-";
