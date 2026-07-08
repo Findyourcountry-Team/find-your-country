@@ -159,12 +159,12 @@ async function getCountry(country) {
       ` https://api.restcountries.com/countries/v5/names.common/${country}`,
       {
         headers: {
-          Authorization: "Bearer rc_live_fe18335c98ad4cf594ab53e84511510c",
+          Authorization: "Bearer rc_live_737e0b868e234eed8916610e23006058",
         },
       },
     );
     const data = await response.json();
-    console.log(data.data.objects);
+    console.log(data);
     if (data.data.objects && data.data.objects.length > 0) {
      
       const countryData = data.data.objects[0];
