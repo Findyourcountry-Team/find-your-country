@@ -16,6 +16,7 @@ body {
     Roboto,
     sans-serif;
 }
+
 .header {
   text-align: center;
 }
@@ -69,6 +70,9 @@ body {
   margin-bottom: 10px;
   font-size: 16px;
 }
+/* ======================= */
+/* Guess The Country Game  */
+/* ======================= */
 
 @media (max-width: 480px) {
   body {
@@ -127,6 +131,7 @@ button {
   background-color: #656eed;
 }
 
+/* Hint button */
 #hintBtn {
   background-color: white;
   color: #333;
@@ -141,6 +146,7 @@ button {
   background-color: #c7d5d8;
 }
 
+/* Next button */
 #nextBtn {
   display: block;
   width: 100%;
@@ -156,7 +162,7 @@ button {
   background-color: #dddddd;
 }
 
-/* Result */
+/* Result text */
 #result {
   margin-top: 20px;
   text-align: center;
