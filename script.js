@@ -5,130 +5,79 @@ const hintBtn = document.getElementById("hintBtn");
 const nextBtn = document.getElementById("nextBtn");
 const result = document.getElementById("result");
 
-const API_URL = "https://restcountries.com/v3.1/all?fields=name,flags,cca2,altSpellings";
-const FALLBACK_URL = "https://cdn.jsdelivr.net/npm/world-countries@5.0.0/countries.json";
 
-let countries = [];
-let currentCountry = null;
+
+const countries = ['ETH', 'SOM', 'SSD', 'TZA', 'UGA','AUT', 'BEL', 'CZE', 'DNK', 'FRA', 'LUX', 'NLD', 'POL', 'CHE','BWA', 'LSO', 'MOZ', 'NAM', 'SWZ', 'ZWE','AFG', 'BTN', 'MMR', 'HKG', 'IND', 'KAZ', 'NPL', 'PRK', 'KGZ', 'LAO',];
+let currentCountryName = "";
+
+
 
 // 🌍 Fetch countries from REST Countries API
 async function fetchCountries() {
+  const randomIndex = Math.floor(Math.random() * countries.length)
+  const randomInput = countries[randomIndex];
+  
     try {
-        const res = await fetch(` https://api.restcountries.com/countries/v5/names.common/`
-        );
+        const res = await fetch( ` https://api.restcountries.com/countries/v5/names.common/${randomInput}`,
+      {
+        headers: {
+          Authorization: "Bearer rc_live_737e0b868e234eed8916610e23006058",
+        },
+      },);
+      //hadii uu serverka diido 
+      if(!res.ok) {
+        throw new error ("xogta wadamada lama so heli karo");
+      }
         const data = await res.json();
 
-        if (data.success === false || data.errors) {
-            countries = await fetchFallbackCountries();
-        } else {
-            countries = data;
-        }
+        const country = data[0];
+        currentCountryName = country.names.common.toLowerCase();
 
-        if (!countries.length) {
-            throw new Error("No countries loaded");
-        }
+        //wadanka magacisa
+        flagImg.src = country.flag.url_png || country.flag.url_svg ;
 
-        getRandomCountry();
+        guessInput.value = "";
+        result.textContent = "";
 
-    } catch (error) {
-        console.error("Error fetching countries:", error);
-
-        try {
-            countries = await fetchFallbackCountries();
-            if (countries.length) {
-                getRandomCountry();
-                return;
-            }
-        } catch (fallbackError) {
-            console.error("Fallback also failed:", fallbackError);
-        }
-
-        result.textContent = "Failed to load countries. Check your internet connection.";
-        result.style.color = "red";
-    }
+} catch(error){
+  console.log(error, "cilad ayaa dhacdey")
+}
 }
 
-// Backup data source (same country info, uses flagcdn.com for flags)
-async function fetchFallbackCountries() {
-    const res = await fetch(FALLBACK_URL);
-    const data = await res.json();
 
-    return data.map((country) => ({
-        name: country.name,
-        cca2: country.cca2,
-        altSpellings: country.altSpellings ?? [],
-        flags: {
-            svg: `https://flagcdn.com/${country.cca2.toLowerCase()}.svg`,
-            png: `https://flagcdn.com/w640/${country.cca2.toLowerCase()}.png`
-        }
-    }));
+
+
+//is barbardhiga inputka qofka iyo wadanka randomka ah 
+submitBtn.addEventListener("click", () => {
+const inputGuess = guessInput.value.trim().toLowerCase();
+//if statement adigo isticmalaya isku bar bardhig 
+if(inputGuess === currentCountryName) {
+  result.textContent = "Good job 🎉"
+  result.style.color = "green";
+} else {
+  result.textContent = "Nice try but not the correct one ❌ "
+  result.style.color = "red"
 }
-
-// 🎲 Random country
-function getRandomCountry() {
-    if (!countries.length) return;
-
-    const randomIndex = Math.floor(Math.random() * countries.length);
-    currentCountry = countries[randomIndex];
-
-    flagImg.src = currentCountry.flags.svg;
-    flagImg.alt = "Country Flag";
-    guessInput.value = "";
-    result.textContent = "";
-}
-
-// ✅ Check if guess matches the country name
-function isCorrectGuess(guess) {
-    const names = [
-        currentCountry.name.common,
-        currentCountry.name.official,
-        ...(currentCountry.altSpellings ?? [])
-    ]
-        .filter(Boolean)
-        .map((name) => name.toLowerCase());
-
-    return names.includes(guess);
-}
-
-// 🎯 Submit guess
-function submitGuess() {
-    if (!currentCountry) return;
-
-    const userGuess = guessInput.value.trim().toLowerCase();
-
-    if (!userGuess) return;
-
-    if (isCorrectGuess(userGuess)) {
-        result.textContent = "✅ Correct!";
-        result.style.color = "green";
-    } else {
-        result.textContent = `❌ Wrong! Answer: ${currentCountry.name.common}`;
-        result.style.color = "red";
-    }
-}
-
-submitBtn.addEventListener("click", submitGuess);
-
-guessInput.addEventListener("keydown", (e) => {
-    if (e.key === "Enter") submitGuess();
 });
+fetchCountries()
 
-// 💡 Hint — show first letter
+
 hintBtn.addEventListener("click", () => {
-    if (!currentCountry) return;
-
-    const firstLetter = currentCountry.name.common.charAt(0).toUpperCase();
-    result.textContent = `Hint: starts with "${firstLetter}"`;
-    result.style.color = "#3b82f6";
+if(currentCountryName) {
+  const firstWord = currentCountryName.charAt(0).toUpperCase();
+  guessInput.value = firstWord;
+}
 });
 
-// 🔄 Next country
+
 nextBtn.addEventListener("click", () => {
-    getRandomCountry();
-});
+  fetchCountries();
+})
 
-// 🚀 Start game
-fetchCountries();
+
+
+
+
 const searchInput = document.querySelector(".search-input");
 const countryForm = document.getElementById("country-form");
 

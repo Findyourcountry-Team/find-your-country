@@ -1,87 +1,74 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Find Your Country</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
 
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-</head>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+  </head>
 
-<body>
-
+  <body>
     <!-- Header -->
     <header class="header">
       <div class="icon"><h1>🌐</h1></div>
       <h1>Find Your Country 🌍</h1>
       <p>Explore countries around the world and test your geograph knowledge</p>
-        
     </header>
 
     <!-- Search -->
     <div class="input-container">
-
       <i class="fa-solid fa-magnifying-glass" style="color: #545868"></i>
       <input type="text" id="search-input" class="search-input" />
-    </div> 
+    </div>
 
     <main id="country-form" class="card hidden">
-      <img id="flag" src="" alt="country flag">
-      <h2 id="country-name" ></h2>
+      <img id="flag" src="" alt="country flag" />
+      <h2 id="country-name"></h2>
       <div id="info">
         <p><strong>🏠 Capital:</strong> <span id="capital">-</span></p>
         <p><strong>👥 Population:</strong> <span id="population">-</span></p>
         <p><strong>🗣️ Language:</strong> <span id="language">-</span></p>
         <p><strong>🪙 Currencies:</strong> <span id="Currencies">-</span></p>
-
       </div>
     </main>
 
-
     <!-- Guess Game -->
     <section class="game-container">
+      <h2>Guess the Country! 🎮</h2>
 
-        <h2>Guess the Country! 🎮</h2>
+      <div class="flag-container">
+        <img id="flag" src="" alt="Country Flag" />
+      </div>
 
-        <div class="flag-container">
-            <img
-                id="flag"
-                src="https://flagcdn.com/w640/so.png"
-                alt="Country Flag">
-        </div>
+      <div class="input-container">
+        <input
+          type="text"
+          id="guessInput"
+          placeholder="Enter your guess..."
+          autocomplete="off"
+        />
+      </div>
 
-        <div class="input-container">
-            <input
-                type="text"
-                id="guessInput"
-                placeholder="Enter your guess..."
-                autocomplete="off">
-        </div>
-
-        <div class="button-container">
-            <button id="submitBtn" type="button">
-                <i class="fa-regular fa-paper-plane"></i>
-                Submit Guess
-            </button>
-
-            <button id="hintBtn" type="button">
-                Hint
-            </button>
-        </div>
-
-        <button id="nextBtn" type="button">
-            Try Another Country
+      <div class="button-container" class="btn-group">
+        <button id="submitBtn" type="button">
+          <i class="fa-regular fa-paper-plane"></i>
+          Submit Guess
         </button>
 
-        <p id="result"></p>
+        <button id="hintBtn" type="button"><i class="fa-regular fa-circle-question" style="color: #545868;"></i> Hint</button>
+      </div>
+      <button id="nextBtn" type="button">Try Another Country</button>
 
+      <p id="result"></p>
     </section>
 
     <script src="script.js"></script>
-
-</body>
+  </body>
 </html>

@@ -1,14 +1,13 @@
 /* Reset */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 /* Body */
 body {
-
-  background-color: #e2e8f0;
+  background-color: #f0f1f3;
   font-family:
     "inter",
     -apple-system,
@@ -36,11 +35,9 @@ body {
   outline: none;
   box-sizing: border-box;
   color: #4a5568;
-
 }
 
 .input-container i {
-
   position: absolute;
   left: 15px;
   top: 50%;
@@ -80,40 +77,89 @@ body {
   .header h1 {
     font-size: 24px;
   }
-  .card {
-    padding: 15px;
-  }
-
 }
-
+.game-container {
+  background-color: white;
+  border-radius: 15px;
+  padding: 25px;
+  margin-bottom: 25px;
+  text-align: left;
+  margin: 30px auto;
+  max-width: 500px;
+}
+#guessInput {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+  margin-bottom: -999px;
+  outline: none;
+}
+#guessInput:focus {
+  border-color: #007bff;
+}
+.btn-group {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: px;
+}
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+}
+#submitBtn {
+  background-color: #2563eb;
+  color: white;
+  width: 70%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
 #submitBtn:hover {
-    background-color: #2563eb;
+  background-color: #656eed;
 }
 
 #hintBtn {
-    flex: 1;
-    background-color: #3b82f6;
-    color: white;
+  background-color: white;
+  color: #333;
+  width: 20%;
+  padding: 12px;
+  border: 3x solid black;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
 }
-
 #hintBtn:hover {
-    background-color: #2563eb;
+  background-color: #c7d5d8;
 }
 
 #nextBtn {
-    width: 100%;
-    background-color: #f2f2f2;
-    color: #333;
+  display: block;
+  width: 100%;
+  background-color: #f2f2f2;
+  color: #333;
+  margin-top: 10px;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
 }
 
 #nextBtn:hover {
-    background-color: #dddddd;
+  background-color: #dddddd;
 }
 
 /* Result */
 #result {
-    margin-top: 20px;
-    text-align: center;
-    font-size: 18px;
-    font-weight: bold;
+  margin-top: 20px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
 }
