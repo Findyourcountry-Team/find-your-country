@@ -1,13 +1,14 @@
-const flagImg = document.getElementById("flag");
+const flagImg = document.getElementById("calan");
 const guessInput = document.getElementById("guessInput");
 const submitBtn = document.getElementById("submitBtn");
 const hintBtn = document.getElementById("hintBtn");
 const nextBtn = document.getElementById("nextBtn");
 const result = document.getElementById("result");
+const guessFlag = document.getElementById("flag");
 
 
 
-const countries = ['ETH', 'SOM', 'SSD', 'TZA', 'UGA','AUT', 'BEL', 'CZE', 'DNK', 'FRA', 'LUX', 'NLD', 'POL', 'CHE','BWA', 'LSO', 'MOZ', 'NAM', 'SWZ', 'ZWE','AFG', 'BTN', 'MMR', 'HKG', 'IND', 'KAZ', 'NPL', 'PRK', 'KGZ', 'LAO',];
+const countries = ['ETH', 'SOM', 'SSD', 'TZA', 'UGA','AUT', 'BEL', 'CZE', 'DNK', 'FRA', 'LUX', 'NLD', 'POL', 'CHE','BWA', 'LSO', 'MOZ', 'NAM', 'SWZ', 'ZWE','AFG', 'BTN', 'MMR', 'HKG', 'IND', 'KAZ', 'NPL', 'PRK', 'KGZ', 'LAO'];
 let currentCountryName = "";
 
 
@@ -15,13 +16,15 @@ let currentCountryName = "";
 // 🌍 Fetch countries from REST Countries API
 async function fetchCountries() {
   const randomIndex = Math.floor(Math.random() * countries.length)
+  console.log("randomIndex", randomIndex)
   const randomInput = countries[randomIndex];
   
+  
     try {
-        const res = await fetch( ` https://api.restcountries.com/countries/v5/names.common/${randomInput}`,
+        const res = await fetch(`https://api.restcountries.com/countries/v5/codes.alpha_3/${randomInput}`,
       {
         headers: {
-          Authorization: "Bearer rc_live_737e0b868e234eed8916610e23006058",
+          Authorization: "Bearer rc_live_215b888a0fe341679738ca4cfe5d471c",
         },
       },);
       //hadii uu serverka diido 
@@ -29,12 +32,15 @@ async function fetchCountries() {
         throw new error ("xogta wadamada lama so heli karo");
       }
         const data = await res.json();
+        console.log("data", data)
 
-        const country = data[0];
-        currentCountryName = country.names.common.toLowerCase();
+        const country = data.data.objects;
+        console.log("country", data.data.objects)
+        currentCountryName = country[0].names.common.toLowerCase();
+        console.log("name", country[0])
 
         //wadanka magacisa
-        flagImg.src = country.flag.url_png || country.flag.url_svg ;
+        guessFlag.src = country[0].flag.url_png || country[0].flag.url_svg ;
 
         guessInput.value = "";
         result.textContent = "";
@@ -108,7 +114,7 @@ async function getCountry(country) {
       ` https://api.restcountries.com/countries/v5/names.common/${country}`,
       {
         headers: {
-          Authorization: "Bearer rc_live_737e0b868e234eed8916610e23006058",
+          Authorization: "Bearer rc_live_215b888a0fe341679738ca4cfe5d471c",
         },
       },
     );
@@ -157,5 +163,5 @@ async function getCountry(country) {
     console.log(error);
   }
 }
-getCountry('kenya')
+getCountry('somalia')
  
